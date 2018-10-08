@@ -41,21 +41,8 @@ EOF
   count = "${length(keys(var.links))}"
 }
 
-resource "aws_api_gateway_integration_response" "links" {
-  depends_on  = ["aws_api_gateway_integration.links"]
-  rest_api_id = "${aws_api_gateway_rest_api.links.id}"
-  resource_id = "${aws_api_gateway_resource.links.*.id[count.index]}"
-  http_method = "${aws_api_gateway_method.links.*.http_method[count.index]}"
-  status_code = 301
-
-  response_parameters = {
-    "method.response.header.location" = "'${var.links[element(sort(keys(var.links)), count.index)]}'"
-  }
-
-  count = "${length(keys(var.links))}"
-}
-
 resource "aws_api_gateway_method_response" "links" {
+  depends_on  = ["aws_api_gateway_method.links"]
   rest_api_id = "${aws_api_gateway_rest_api.links.id}"
   resource_id = "${aws_api_gateway_resource.links.*.id[count.index]}"
   http_method = "${aws_api_gateway_method.links.*.http_method[count.index]}"
@@ -63,6 +50,20 @@ resource "aws_api_gateway_method_response" "links" {
 
   response_parameters = {
     "method.response.header.location" = true
+  }
+
+  count = "${length(keys(var.links))}"
+}
+
+resource "aws_api_gateway_integration_response" "links" {
+  depends_on  = ["aws_api_gateway_integration.links"]
+  rest_api_id = "${aws_api_gateway_rest_api.links.id}"
+  resource_id = "${aws_api_gateway_resource.links.*.id[count.index]}"
+  http_method = "${aws_api_gateway_method_response.links.*.http_method[count.index]}"
+  status_code = 301
+
+  response_parameters = {
+    "method.response.header.location" = "'${var.links[element(sort(keys(var.links)), count.index)]}'"
   }
 
   count = "${length(keys(var.links))}"
