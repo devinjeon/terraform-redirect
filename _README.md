@@ -15,4 +15,4 @@ It may be enough for personal use :)
 ## Examples
 
 * https://github.com/devinjeon/hyojun.me-links
-    * https://hyojun.me/~ndc18
+    * https://links.hyojun.me/ndc18
