@@ -29,5 +29,5 @@ It may be enough for personal use :)
 
 | Name | Description |
 |------|-------------|
-| target_domain_name |  |
+| target_domain_name | The hostname for the custom domain's regional endpoint. |
 
