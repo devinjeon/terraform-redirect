@@ -9,6 +9,6 @@ variable "acm_domain_name" {
 }
 
 variable "custom_domain_name" {
-  default = "redirect"
+  default     = "redirect"
   description = "Set custom domain name"
 }
