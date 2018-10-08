@@ -25,3 +25,9 @@ It may be enough for personal use :)
 | custom_domain_name | Set custom domain name | string | `redirect` |
 | links | '*.domain.com/{key}' is redirected to '{value}' | map | - |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| target_domain_name |  |
+
