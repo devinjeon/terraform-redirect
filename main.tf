@@ -62,6 +62,10 @@ resource "aws_api_gateway_integration_response" "links" {
   http_method = "${aws_api_gateway_method_response.links.*.http_method[count.index]}"
   status_code = 301
 
+  response_templates = {
+    "application/json" = ""
+  }
+
   response_parameters = {
     "method.response.header.location" = "'${var.links[element(sort(keys(var.links)), count.index)]}'"
   }
