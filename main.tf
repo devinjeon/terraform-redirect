@@ -14,7 +14,7 @@ resource "aws_api_gateway_rest_api" "links" {
 resource "aws_api_gateway_resource" "links" {
   rest_api_id = "${aws_api_gateway_rest_api.links.id}"
   parent_id   = "${aws_api_gateway_rest_api.links.root_resource_id}"
-  path_part   = "${element(sort(keys(var.links)), count.index)}"
+  path_part   = "${element(keys(var.links), count.index)}"
   count       = "${length(keys(var.links))}"
 }
 
@@ -67,7 +67,7 @@ resource "aws_api_gateway_integration_response" "links" {
   }
 
   response_parameters = {
-    "method.response.header.location" = "'${var.links[element(sort(keys(var.links)), count.index)]}'"
+    "method.response.header.location" = "'${var.links[element(keys(var.links), count.index)]}'"
   }
 
   count = "${length(keys(var.links))}"
