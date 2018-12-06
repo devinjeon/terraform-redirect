@@ -87,18 +87,14 @@ locals {
 
 resource "aws_api_gateway_deployment" "links" {
   depends_on = [
-    "aws_api_gateway_integration.links",
+    "aws_api_gateway_method_response.links",
+    "aws_api_gateway_integration_response.links",
   ]
 
   stage_description = "${local.deploy_hash}"
 
   rest_api_id = "${aws_api_gateway_rest_api.links.id}"
   stage_name  = "main"
-
-  # NOTE: There is deployment issue - https://github.com/hashicorp/terraform/issues/10674
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 # --------------------------------------------------------------------------------
