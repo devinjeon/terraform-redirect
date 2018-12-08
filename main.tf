@@ -81,6 +81,7 @@ locals {
     "${var.acm_domain_name}",
     "${var.custom_domain_name}",
   ]
+
   hash = "${sha256(join(";", local.deploy_hash_keys))}"
 }
 
