@@ -75,14 +75,13 @@ resource "aws_api_gateway_integration_response" "links" {
 
 locals {
   # NOTE: There is deployment issue - https://github.com/hashicorp/terraform/issues/6613
-  file_hashes = [
-    "${md5(file("${path.module}/main.tf"))}",
-    "${md5(jsonencode(var.links))}",
-    "${md5(var.acm_domain_name)}",
-    "${md5(var.custom_domain_name)}",
+  deploy_hash_keys = [
+    "${file("${path.module}/main.tf")}",
+    "${jsonencode(var.links)}",
+    "${var.acm_domain_name}",
+    "${var.custom_domain_name}",
   ]
-
-  deploy_hash = "${join(",", local.file_hashes)}"
+  hash = "${sha256(join(";", local.deploy_hash_keys))}"
 }
 
 resource "aws_api_gateway_deployment" "links" {
@@ -91,7 +90,8 @@ resource "aws_api_gateway_deployment" "links" {
     "aws_api_gateway_integration_response.links",
   ]
 
-  stage_description = "${local.deploy_hash}"
+  # NOTE: There is deployment issue - https://github.com/hashicorp/terraform/issues/6613
+  stage_description = "${local.hash}"
 
   rest_api_id = "${aws_api_gateway_rest_api.links.id}"
   stage_name  = "main"
