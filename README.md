@@ -12,10 +12,27 @@ It may be enough for personal use :)
 
 * Maximum number of resources per API: 300 [(link)](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html)
 
-## Examples
+## Usage
 
-* https://github.com/devinjeon/hyojun.me-links
-    * https://links.hyojun.me/ndc18
+```hcl
+provider "aws" {}
+
+module "example" {
+  source = "github.com/DevinJeon/terraform-redirect"
+
+  acm_domain_name    = "*.example.com"
+  custom_domain_name = "links.example.com"
+
+  links = {
+    "google"    = "https://google.com"    # -> links.example.com/google
+    "facebook"  = "https://facebook.com   # -> links.example.com/facebook"
+    ...
+  }
+}
+```
+
+### Example
+https://github.com/devinjeon/hyojun.me-links
 
 ## Inputs
 
