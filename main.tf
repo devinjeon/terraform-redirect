@@ -122,9 +122,4 @@ resource "aws_api_gateway_base_path_mapping" "links" {
   api_id      = "${aws_api_gateway_rest_api.links.id}"
   stage_name  = "${aws_api_gateway_deployment.links.stage_name}"
   domain_name = "${aws_api_gateway_domain_name.links.domain_name}"
-
-  # Deployment issue: https://github.com/hashicorp/terraform/issues/10674
-  lifecycle {
-    create_before_destroy = true
-  }
 }
