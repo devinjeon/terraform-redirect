@@ -1,4 +1,4 @@
-# Redirect
+# terraform-redirect
 
 * Terraform module for simple redirection
 * This does not use AWS Lambda, using only AWS API Gateway
@@ -15,8 +15,8 @@ module "example" {
   custom_domain_name = "links.example.com"
 
   links = {
-    "google"    = "https://google.com"    # -> links.example.com/google
-    "facebook"  = "https://facebook.com   # -> links.example.com/facebook"
+    "google"    = "https://google.com"     # -> links.example.com/google
+    "facebook"  = "https://facebook.com"   # -> links.example.com/facebook
     ...
   }
 }

@@ -15,8 +15,8 @@ module "example" {
   custom_domain_name = "links.example.com"
 
   links = {
-    "google"   = "https://google.com"    # -> links.example.com/google
-    "facebook" = "https://facebook.com   # -> links.example.com/facebook"
+    "google"    = "https://google.com"     # -> links.example.com/google
+    "facebook"  = "https://facebook.com"   # -> links.example.com/facebook
     ...
   }
 }
@@ -42,13 +42,12 @@ If the order of the keys in the `links` variable is changed, it is not guarantee
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| acm_domain_name | Before setting up a custom domain name for an API, you must have an SSL/TLS certificate ready in AWS Certificate Manager. (Ref: https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains-prerequisites.html) | string | - | yes |
-| custom_domain_name | Set custom domain name | string | `redirect` | no |
-| links | '*.domain.com/{key}' is redirected to '{value}' | map | - | yes |
+| acm\_domain\_name | Before setting up a custom domain name for an API, you must have an SSL/TLS certificate ready in AWS Certificate Manager. (Ref: [Link](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains-prerequisites.html)) | string | n/a | yes |
+| custom\_domain\_name | Set custom domain name | string | `"redirect"` | no |
+| links | `*.domain.com/{key}` is redirected to `{value}` | map | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| target_domain_name | The hostname for the custom domain's regional endpoint. |
-
+| target\_domain\_name | The hostname for the custom domain's regional endpoint. |
