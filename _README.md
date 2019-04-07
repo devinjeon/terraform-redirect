@@ -1,6 +1,6 @@
-# terraform-redirect
+# Terraform-Redirect
 
-* Terraform module for simple redirection
+* Terraform module to create custom URL for 301 redirection
 * This does not use AWS Lambda, using only AWS API Gateway
 
 ## Usage
